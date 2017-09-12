@@ -54,7 +54,7 @@ namespace DealerContractArchive.EntityModels
 
                 entity.Property(e => e.ScannedContractUrl)
                     .HasMaxLength(150)
-                    .IsUnicode(false);
+                    .IsUnicode(true);
 
                 entity.Property(e => e.TaxId)
                     .IsRequired()

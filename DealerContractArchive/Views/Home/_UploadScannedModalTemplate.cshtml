@@ -1,0 +1,50 @@
+﻿<script type="text/x-template" id="uploadscanned-modal-template">
+    <transition name="modal">
+        <div class="modal-mask">
+            <div class="modal-wrapper">
+                <div class="modal-container">
+                    <div>
+                        <h4>Upload PDF Document</h4>
+                    </div>
+                    <div class="modal-body">
+                        <vue-clip v-bind:options="options" 
+                                  :on-added-file="addedfile" 
+                                  :on-complete="uploadcompleted"
+                                  :total-progress="progresschange">
+                            <template slot="clip-uploader-action">
+                                <div>
+                                    <div class="dz-message"><pre> Click here to upload. </pre></div>
+                                </div>
+                            </template>
+                            @*shows up this portion when add file*@
+                            <template slot="clip-uploader-body" scope="props">
+                                @*<div v-for="file in props.files">
+                                </div>*@
+                            </template>
+                        </vue-clip>
+                        <div class="row">
+                            <div class="col-sm-3 fixed-height text-right">Filename:</div>
+                            <div class="col-sm-8 fixed-height text-left">{{Filename}}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3 fixed-height text-right">Status:</div>
+                            <div class="col-sm-8 fixed-height text-danger text-left">{{Status}}</div>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar"
+                                 v-bind:aria-valuenow="Progress" aria-valuemin="0" aria-valuemax="100" v-bind:style="progressStyle">
+                                {{Progress}}%
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-default"v-on:click="$emit('close')" v-bind:disabled="Uploading == 1">
+                            OK
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </transition>
+</script>

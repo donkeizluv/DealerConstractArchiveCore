@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using DealContractArchiver.Models;
 using DealerContractArchive.EntityModels;
 using DealContractArchiver.Models.Helper;
 using System.Diagnostics;
+using Microsoft.AspNetCore.Http;
+using System.IO;
+using DealerContractArchive.Helper;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -79,6 +80,52 @@ namespace DealerContractArchive.Views
 #endif
                 return BadRequest();
             }
+        }
+
+        //setting....
+        private const string AcceptedUploadType = "application/pdf";
+        private readonly double MinFileLength = 0.5f * Math.Sqrt(1024); //500KB
+        private const string ScanFolder = "UploadedScans";
+        [HttpPost("UploadScan")]
+        public IActionResult UploadScan([FromQuery]int contractId)
+        {
+            var files = Request.Form.Files;
+            if (files.Count < 1 || files.Count > 1) return BadRequest("Invalid file count.");
+            var file = files.First();
+            if (file.Length < (int)MinFileLength) return BadRequest("File is too small");
+            if (string.Compare(file.ContentType, AcceptedUploadType, true) != 0) return BadRequest("Invalid file type.");
+            using (var context = new DealerContractContext())
+            {
+                var contract = context.Contracts.FirstOrDefault(c => c.ContractId == contractId);
+                if (contract == null) return BadRequest("Contract not found");
+                if (!string.IsNullOrEmpty(contract.ScannedContractUrl)) return BadRequest("Contract has scan uploaded already");
+
+                if (!SaveScan(file, contract.ContractId))
+                {
+                    throw new InvalidOperationException();
+                }
+                contract.ScannedContractUrl = FileNameMaker(file.FileName, contract.ContractId);
+                context.SaveChanges();
+            }
+            return Ok();
+        }
+        private string FileNameMaker(string fileName, int index)
+        {
+            return $"contract_{index}_{fileName}";
+        }
+        private bool SaveScan(IFormFile file, int index)
+        {
+            //do save
+            //if file exists?
+            var path = Path.Combine(EnviromentHelper.RootPath, ScanFolder);
+            if (!Directory.Exists(path)) Directory.CreateDirectory(path);
+            var fileName = Path.Combine(path, FileNameMaker(file.FileName, index));
+            if ((new FileInfo(fileName)).Exists) return false;
+            using (var stream = new FileStream(fileName, FileMode.Create))
+            {
+                file.CopyTo(stream);
+            }
+            return true;
         }
 
         private List<ContractModel> GetFilteredConstractsQuery(FilterColumn filterCol, string filterString, int page, out int totalRows)

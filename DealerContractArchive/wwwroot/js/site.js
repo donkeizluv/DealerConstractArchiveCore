@@ -1,6 +1,7 @@
 ﻿
-var GetContractsListApiUrl = "/api/HomeApi/GetContractViewerModel?";
-var AddContractApiUrl = "/api/HomeApi/AddNewContract";
+const GetContractsListApiUrl = "/api/HomeApi/GetContractViewerModel?";
+const AddContractApiUrl = "/api/HomeApi/AddNewContract";
+const UploadContractApiUrl = "/api/HomeApi/UploadScan";
 
 var ContractsListing = {
     name: 'ContractsListing',
@@ -45,7 +46,74 @@ var router = new VueRouter({
 //resgister
 Vue.use(VueRouter);
 Vue.use(VeeValidate);
-//modal component
+
+//upload modal component
+Vue.component('upload-modal', {
+    template: '#uploadscanned-modal-template',
+    //props: parent data -> no mutate
+    //data: personal data -> do whatever want!
+
+    data: function(){
+        return {
+            options: {
+                method: 'post',
+                uploadMultiple: false,
+                url: this.GetUploadScanApi(5),
+                paramName: 'file',
+                maxFilesize: 10,
+                maxFiles: 1,
+                acceptedFiles: {
+                    extensions: ['application/pdf'],
+                    message: 'You are uploading an invalid file'
+                }
+            },
+            Uploading: 0,
+            Progress: 0,
+            Filename: "",
+            Status: "..."
+        };
+    },
+    computed: {
+        progressStyle: function () {
+            return {
+                width: this.$data.Progress + '%'
+            };
+        }
+    },
+
+    methods: {
+        GetUploadScanApi: function (id) {
+            return UploadContractApiUrl + "?contractId=" + id;
+        },
+        //showsucsess: function (file) {
+        //    console.log(file);
+        //},
+        addedfile: function (file) {
+            this.$data.Uploading = 1;
+            this.$data.Filename = file.name;
+        },
+        uploadcompleted: function (file, status, xhr) {
+            console.log(xhr);
+            if (status != 'success') {
+                if (xhr.status == 500)
+                    this.$data.Status = "Server error!";
+                else
+                    this.$data.Status = xhr.response;
+            }
+            else
+                this.$data.Status = 'Success!';
+            //disable upload
+            this.$data.Uploading = 0;
+            this.$data.Progress = 0;
+        },
+        progresschange(progress, totalBytes, bytesSent) {
+            console.log(progress);
+            this.$dat.Progress = progress;
+        }
+    }
+});
+
+//new contract modal component
 Vue.component('newcontract-modal', {
     template: '#addcontract-modal-template',
     //props: parent data -> no mutate
@@ -57,7 +125,7 @@ Vue.component('newcontract-modal', {
             Address: "",
             TaxId: "",
             Commission: 0,
-            Status: "...",
+            Status: "",
             AddingContract: 0
         };
     },
@@ -139,7 +207,8 @@ var vm = new Vue({
         SelectedFilterValue: 2,
         SearchString: "",
 
-        ShowAddContractModal: false
+        ShowAddContractModal: false,
+        ShowUploadModal: false
     },
 
     computed: {
@@ -171,7 +240,7 @@ var vm = new Vue({
     },
     //notify router changes
     watch: {
-        '$route'(to, from) {
+        $route: function(to, from) {
             console.log(to);
             //updates on backkey
             this.$data.SearchString = to.query.contains;
@@ -230,6 +299,10 @@ var vm = new Vue({
         //add new row btn clicked
         AddNewContractClicked: function () {
             this.$data.ShowAddContractModal = true;
+        },
+
+        UploadClicked: function () {
+            this.$data.ShowUploadModal = true;
         },
 
         SearchButtonClicked: function () {

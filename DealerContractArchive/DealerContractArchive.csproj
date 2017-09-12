@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Models\Helper\" />
+    <Folder Include="UploadedScans\" />
     <Folder Include="wwwroot\lib\axios\dist\" />
   </ItemGroup>
 

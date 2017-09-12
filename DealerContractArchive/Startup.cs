@@ -10,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.Formatters;
 using Newtonsoft.Json.Serialization;
 using Microsoft.AspNetCore.Mvc;
+using DealerContractArchive.Helper;
 
 namespace DealerContractArchive
 {
@@ -32,10 +33,12 @@ namespace DealerContractArchive
                 options.SerializerSettings.ContractResolver = new DefaultContractResolver();
             });
         }
-
+        
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            EnviromentHelper.RootPath = env.ContentRootPath;
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
