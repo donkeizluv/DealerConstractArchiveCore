@@ -25,6 +25,9 @@ var ContractsListing = {
         ChangePageClicked: function (page) {
             //request app to fetch new page
             this.$emit('changepageclicked', page);
+        },
+        UploadContractClicked: function (id) {
+            this.$emit('uploadcontractclicked', id)
         }
 
     }
@@ -48,17 +51,27 @@ Vue.use(VueRouter);
 Vue.use(VeeValidate);
 
 //upload modal component
-Vue.component('upload-modal', {
+var UploadModal = {
+    name: 'upload-modal',
     template: '#uploadscanned-modal-template',
     //props: parent data -> no mutate
     //data: personal data -> do whatever want!
     //https://github.com/thetutlage/vue-clip
-    data: function(){
+
+    computed: {
+        progressStyle: function () {
+            return {
+                width: this.$data.Progress + '%'
+            };
+        },
+    },
+    props: ['contractid'],
+    data: function () {
         return {
             options: {
                 method: 'post',
                 uploadMultiple: false,
-                url: this.GetUploadScanApi(5),
+                url: UploadContractApiUrl + "?contractId=" + this.contractid,
                 paramName: 'file',
                 maxFilesize: 10,
                 maxFiles: 1,
@@ -70,22 +83,12 @@ Vue.component('upload-modal', {
             Uploading: 0,
             Progress: 0,
             Filename: "",
-            Status: "...",
-            Uploadable: true
+            Status: "",
+            Uploadable: true,
+
         };
     },
-    computed: {
-        progressStyle: function () {
-            return {
-                width: this.$data.Progress + '%'
-            };
-        }
-    },
-
     methods: {
-        GetUploadScanApi: function (id) {
-            return UploadContractApiUrl + "?contractId=" + id;
-        },
         //showsucsess: function (file) {
         //    console.log(file);
         //},
@@ -113,8 +116,8 @@ Vue.component('upload-modal', {
             this.$data.Progress = progress;
         }
     }
-});
-
+}
+Vue.component('upload-modal', UploadModal)
 //new contract modal component
 Vue.component('newcontract-modal', {
     template: '#addcontract-modal-template',
@@ -210,7 +213,8 @@ var vm = new Vue({
         SearchString: "",
 
         ShowAddContractModal: false,
-        ShowUploadModal: false
+        ShowUploadModal: false,
+        UploadToContractId: -1,
     },
 
     computed: {
@@ -274,7 +278,7 @@ var vm = new Vue({
         //load contracts on startup
         LoadContracts: function (url) {
             var that = this;
-            console.log(url);
+            //console.log(url);
             axios.get(url)
                 .then(function (response) {
                     that.$data.ContractViewerModel = response.data;
@@ -303,8 +307,9 @@ var vm = new Vue({
             this.$data.ShowAddContractModal = true;
         },
 
-        UploadClicked: function () {
+        ShowUploadModalHandler: function (id) {
             this.$data.ShowUploadModal = true;
+            this.$data.UploadToContractId = id;
         },
 
         SearchButtonClicked: function () {

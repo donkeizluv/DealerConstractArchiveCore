@@ -8,16 +8,18 @@
 <div id="app" class="text-center">
     &nbsp;
     &nbsp;
-    @*search bar*@
-    @Html.Partial("_SearchBar")
-    @*add new record button*@
     @*pops up modal*@
     <newcontract-modal v-if="ShowAddContractModal" v-on:close="ShowAddContractModal = false">
     </newcontract-modal>
 
     @*pops up modal*@
-    <upload-modal v-if="ShowUploadModal" v-on:close="ShowUploadModal = false">
+    <upload-modal v-if="ShowUploadModal" v-on:close="ShowUploadModal = false" v-bind:contractid="UploadToContractId">
     </upload-modal>
+
+    @*search bar*@
+    @Html.Partial("_SearchBar")
+    @*add new record button*@
+
     &nbsp;
     &nbsp;
     @*router displays*@
@@ -26,15 +28,10 @@
                  v-bind:currentpage="OnPage"
                  v-bind:totalpages="TotalPages"
                  v-bind:totalrows="TotalRows"
-                 v-on:changepageclicked="PageNavClicked"></router-view>
+                 v-on:changepageclicked="PageNavClicked"
+                 v-on:uploadcontractclicked="ShowUploadModalHandler"></router-view>
     @*even though we dont pass any variables to handler but the method does receive the value got pass to this.emit
         from the component wtf?*@
-
-
-    @*test*@
-    <vue-clip>
-
-    </vue-clip>
 </div>
 
 <environment include="Development">

@@ -24,7 +24,11 @@
                     <td>{{ contract.Address }}</td>
                     <td>{{ contract.Commission }}</td>
                     <td>
-                        <div v-if="contract.ScannedContractUrl == null">...</div>
+                        <div v-if="contract.ScannedContractUrl == null">
+                            <button v-on:click="UploadContractClicked(contract.ContractId)" class="btn btn-default">
+                                <span class="glyphicon glyphicon-cloud-upload"></span> 
+                            </button>
+                        </div>
                         <div v-else>Show</div>
                     </td>
                     <td>
