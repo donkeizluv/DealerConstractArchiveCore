@@ -1,0 +1,43 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@*Constract-Listing-Template*@
+@Html.Partial("_ContractsListingTemplate")
+@Html.Partial("_AddContractModalTemplate")
+<div id="app" class="text-center">
+    &nbsp;
+    &nbsp;
+    @*search bar*@
+    @Html.Partial("_SearchBar")
+    @*add new record button*@
+    @*pops up modal*@
+    <newcontract-modal v-if="ShowAddContractModal" v-on:close="ShowAddContractModal = false">
+    </newcontract-modal>
+    &nbsp;
+    &nbsp;
+    @*router displays*@
+    <router-view class="view"
+                 v-bind:contracts="ContractModels"
+                 v-bind:currentpage="OnPage"
+                 v-bind:totalpages="TotalPages"
+                 v-bind:totalrows="TotalRows"
+                 v-on:changepageclicked="PageNavClicked"></router-view>
+    @*even though we dont pass any variables to handler but the method does receive the value got pass to this.emit
+        from the component wtf?*@
+</div>
+
+<environment include="Development">
+    @*vue related*@
+    <script src="~/lib/axios/dist/axios.js"></script>
+    <script src="~/lib/vee-validate/dist/vee-validate.js"></script>
+    <script src="~/lib/vue-router/dist/vue-router.js"></script>
+    <script src="~/lib/vue/dist/vue.js"></script>
+    @*site js*@
+    <script src="~/js/site.js"></script>
+</environment>
+@*prod*@
+@*<environment exclude="Development">
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="~/js/site.min.js"></script>
+</environment>*@

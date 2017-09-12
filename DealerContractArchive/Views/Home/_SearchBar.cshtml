@@ -1,0 +1,40 @@
+﻿<div class="row">
+    @*add new button*@
+    @*should i move this to listing component?*@
+    <div class="pull-left" style="padding-left: 40px">
+        <button v-on:click="AddNewContractClicked" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span> </button>
+    </div>
+    <div class="col-xs-4 col-centered">
+        <div class="input-group" id="adv-search">
+            <input v-on:keyup.enter="SearchButtonClicked" v-model="SearchString" type="text" class="form-control" placeholder="Search" />
+            <div class="input-group-btn">
+                <div class="btn-group" role="group">
+                    <div class="dropdown dropdown-lg">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></button>
+                        <div class="dropdown-menu dropdown-menu-right" role="menu">
+                            <form  v-on:submit.prevent class="form-horizontal" role="form">
+                                <div class="form-group">
+                                    <label for="filter">Filter by</label>
+                                    <select v-model="SelectedFilterValue" name="filter" class="form-control">
+                                        <option value="1">Index</option>
+                                        <option value="2">Name</option>
+                                        <option value="3">Phone</option>
+                                        <option value="4">Address</option>
+                                        <option value="5">Tax Id</option>
+                                        <option value="6">Added By</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="contains">Contains the words</label>
+                                    <input v-on:keyup.enter="SearchButtonClicked" name="contains" v-model="SearchString" class="form-control" type="text" />
+                                </div>
+                                <button v-on:click="SearchButtonClicked" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+                            </form>
+                        </div>
+                    </div>
+                    <button v-on:click="SearchButtonClicked" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

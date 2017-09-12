@@ -1,0 +1,28 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "noImplicitAny": true,
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "moduleResolution": "node",
+    "declaration": false,
+    "target": "es5"
+  },
+
+  "files": [
+    "tssucks/fuckts.ts"
+  ],
+  "include": [
+    "tssucks"
+  ],
+  "exclude": [
+    "node_modules",
+    "./wwwroot",
+    "wwwroot",
+    "lib",
+    "types",
+    "typings",
+    "typing",
+    "**/*.ts"
+  ]
+}

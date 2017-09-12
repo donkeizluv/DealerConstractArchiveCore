@@ -1,0 +1,85 @@
+﻿<script type="text/x-template" id="addcontract-modal-template">
+    <transition name="modal">
+        <div class="modal-mask">
+            <div class="modal-wrapper">
+                <div class="modal-container">
+                    <div>
+                        <h4>New Contract</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p><b>{{Status}}</b></p>
+                        <form form-horizontal>
+                            <div class="row align-items-start">
+                                @*//ref: http://vee-validate.logaretm.com/*@
+                                <label class="col-sm-3 fixed-height control-label text-right">Name:</label>
+                                <div v-bind:class="{'col-sm-3 fixed-height': true, 'col-sm-3 fixed-height has-error has-feedback': errors.has('name') }">
+                                    <input v-model="Name"
+                                           name="name"
+                                           type="text" 
+                                           class="form-control"
+                                           v-validate="{ rules: { required: true, min:1 } }"/>
+                                    <span v-show="errors.has('name')" class="feelback-icon glyphicon glyphicon-remove form-control-feedback"></span>
+                                </div>
+
+                                <label class="col-sm-3 fixed-height control-label text-right">Phone:</label>
+                                <div v-bind:class="{'col-sm-3 fixed-height': true, 'col-sm-3 fixed-height has-error has-feedback': errors.has('phone') }">
+                                    <input v-model="Phone"
+                                           v-validate="{ rules: { required: true, numeric: true, min:6 } }"
+                                           type="text"
+                                           name="phone"
+                                           class="form-control input-sm" />
+                                    <span v-show="errors.has('phone')" class="feelback-icon glyphicon glyphicon-remove form-control-feedback"></span>
+                                </div>
+                            </div>
+                            <div class="row align-items-start">
+                                <label class="col-sm-3 fixed-height control-label text-right">Address:</label>
+                                <div v-bind:class="{'col-sm-3 fixed-height': true, 'col-sm-3 fixed-height has-error has-feedback': errors.has('address') }">
+                                    <input v-model="Address"
+                                           type="text"
+                                           name="address"
+                                           v-validate="{ rules: { required: true, min:1 } }"
+                                           class="form-control input-sm" />
+                                    <span v-show="errors.has('address')" class="feelback-icon glyphicon glyphicon-remove form-control-feedback"></span>
+                                </div>
+                                <label class="col-sm-3 fixed-height control-label text-right">TaxId:</label>
+                                <div v-bind:class="{'col-sm-3 fixed-height': true, 'col-sm-3 fixed-height has-error has-feedback': errors.has('taxid') }">
+                                    <input v-model="TaxId"
+                                           type="text"
+                                           name="taxid"
+                                           v-validate="{ rules: { required: true, numeric:true, min: 10 } }"
+                                           class="form-control input-sm" />
+                                    <span v-show="errors.has('taxid')" class="feelback-icon glyphicon glyphicon-remove form-control-feedback"></span>
+                                </div>
+                            </div>
+                            <div class="row align-items-start">
+                                <label class="col-sm-3 fixed-height control-label text-right">Commission:</label>
+                                <div v-bind:class="{'col-sm-3 fixed-height': true, 'col-sm-3 fixed-height has-error has-feedback': errors.has('com') }">
+                                    <input v-model="Commission"
+                                           type="text"
+                                           name="com"
+                                           v-validate="{ rules: { required: true, decimal: 4, min_value: 0, max_value: 1} }"
+                                           class="form-control input-sm" />
+                                    <span v-show="errors.has('com')" class="feelback-icon glyphicon glyphicon-remove form-control-feedback"></span>
+                                </div>
+                            </div>
+                        </form>
+                        
+                        @*<input name="input_address" v-model="Address" type="text" class="form-control"/>
+                        <input name="input_taxid" v-model="TaxId" type="text" class="form-control" />
+                        <inpu name="input_com"t v-model="Commision" type="text" class="form-control" />*@
+                        @*effective: NYI
+                        userid: NYI auth so...*@
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-default" v-bind:disabled="AddingContract == 1" v-on:click="AddContract">
+                            OK
+                        </button>
+                        <button class="btn btn-default" v-on:click="$emit('close')">
+                            Cancel
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </transition>
+</script>

@@ -1,0 +1,73 @@
+﻿<template id="Contracts-Listing-Template">
+    <div>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    @*use class instead of h3*@
+                    <td></td>@* why?*@
+                    <td><h4>#</h4></td>
+                    <td><h4>Name</h4></td>
+                    <td><h4>Address</h4></td>
+                    <td><h4>Commision</h4></td>
+                    <td><h4>Scanned</h4></td>
+                    <td><h4>Effective</h4></td>
+                    <td><h4>Added By</h4></td>
+                    <td><h4>Document</h4></td>
+                </tr>
+            </thead>
+            <tbody>
+                @*how to click row*@
+                @*<tr v-for="contract in Contracts" class="row" v-on:click="DataRowClicked(contract)">*@
+                <tr v-for="contract in contracts" class="row">
+                    <td>{{ contract.ContractId }}</td>
+                    <td>{{ contract.Name }}</td>
+                    <td>{{ contract.Address }}</td>
+                    <td>{{ contract.Commission }}</td>
+                    <td>
+                        <div v-if="contract.ScannedContractUrl == null">...</div>
+                        <div v-else>Show</div>
+                    </td>
+                    <td>
+                        <div class="text-success" v-if=contract.Effective>Yes</div>
+                        <div class="text-danger" v-else>No</div>
+                    </td>
+                    <td>{{ contract.Username }}</td>
+                    <td>Print</td>
+                </tr>
+            </tbody>
+        </table>
+        <hr />
+
+        @*pagination*@
+        <div class="row">
+                <ul class="pagination pagination-sm">
+                    @*goes to first*@
+                    <li v-if="currentpage == 1" class="disabled">
+                        <button class="btn btn-default" disabled="">&laquo;</button>
+                        </li>
+                    <li v-else>
+                        <button class="btn btn-default" type="button" v-on:click="ChangePageClicked(1)">&laquo;</button>
+                    </li>
+                    @*page number*@
+                    <li  v-for="index in totalpages">
+                        @*<router-link v-bind:to="GetSearchQueryRoute">{{index}}</router-link>*@
+                        <button v-bind:class="[index == currentpage ? 'btn btn-primary' : 'btn btn-default']" 
+                                type="button" 
+                                v-on:click="ChangePageClicked(index)">
+                            {{index}}
+                        </button>
+                    </li>
+                    @*goes to last*@
+                    <li v-if="currentpage == totalpages" class="disabled">
+                        <button class="btn btn-default" disabled="">&raquo;</button>
+                    </li>
+                    <li v-else>
+                        <button class="btn btn-default" type="button" v-on:click="ChangePageClicked(totalpages)">&raquo;</button>
+                    </li>
+                </ul>
+        </div>
+        <div class="row">
+            <div><span>Total Records: {{totalrows}}</span></div>
+        </div>
+    </div>
+</template>
