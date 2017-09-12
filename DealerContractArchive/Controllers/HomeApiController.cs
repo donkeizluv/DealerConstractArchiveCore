@@ -84,7 +84,7 @@ namespace DealerContractArchive.Views
 
         //setting....
         private const string AcceptedUploadType = "application/pdf";
-        private readonly double MinFileLength = 0.5f * Math.Sqrt(1024); //500KB
+        private readonly double MinFileLength = 0;
         private const string ScanFolder = "UploadedScans";
         [HttpPost("UploadScan")]
         public IActionResult UploadScan([FromQuery]int contractId)

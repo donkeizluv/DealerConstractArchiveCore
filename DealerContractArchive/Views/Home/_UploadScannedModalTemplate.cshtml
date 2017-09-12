@@ -10,10 +10,10 @@
                         <vue-clip v-bind:options="options" 
                                   :on-added-file="addedfile" 
                                   :on-complete="uploadcompleted"
-                                  :total-progress="progresschange">
+                                  :total-progress="uploadprogresschange">
                             <template slot="clip-uploader-action">
                                 <div>
-                                    <div class="dz-message"><pre> Click here to upload. </pre></div>
+                                    <div v-bind:class="{'dz-message' : Uploadable}"><pre> Click here to upload. </pre></div>
                                 </div>
                             </template>
                             @*shows up this portion when add file*@

@@ -52,7 +52,7 @@ Vue.component('upload-modal', {
     template: '#uploadscanned-modal-template',
     //props: parent data -> no mutate
     //data: personal data -> do whatever want!
-
+    //https://github.com/thetutlage/vue-clip
     data: function(){
         return {
             options: {
@@ -70,7 +70,8 @@ Vue.component('upload-modal', {
             Uploading: 0,
             Progress: 0,
             Filename: "",
-            Status: "..."
+            Status: "...",
+            Uploadable: true
         };
     },
     computed: {
@@ -93,7 +94,7 @@ Vue.component('upload-modal', {
             this.$data.Filename = file.name;
         },
         uploadcompleted: function (file, status, xhr) {
-            console.log(xhr);
+            //console.log(xhr);
             if (status != 'success') {
                 if (xhr.status == 500)
                     this.$data.Status = "Server error!";
@@ -105,10 +106,11 @@ Vue.component('upload-modal', {
             //disable upload
             this.$data.Uploading = 0;
             this.$data.Progress = 0;
+            this.$data.Uploadable = false;
         },
-        progresschange(progress, totalBytes, bytesSent) {
+        uploadprogresschange: function(progress, totalBytes, bytesSent) {
             console.log(progress);
-            this.$dat.Progress = progress;
+            this.$data.Progress = progress;
         }
     }
 });
