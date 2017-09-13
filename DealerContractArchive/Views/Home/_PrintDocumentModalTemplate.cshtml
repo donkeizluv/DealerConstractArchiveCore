@@ -2,18 +2,18 @@
     <transition name="modal">
         <div class="modal-mask">
             <div class="modal-wrapper">
-                <div class="modal-container">
+                <div class="modal-container-sm">
                     <div>
-                        <h4>Upload PDF Document</h4>
+                        <h4>Document Printing</h4>
                     </div>
                     <div class="modal-body">
-                        <label for="select">Document:</label>
+                        <label for="select" class="pull-left">Select document type:</label>
                         <select v-model="SelectedDoc" name="select" class="form-control">
                             <option v-for="name in docnames">{{name}}</option>
                         </select>
                     </div>
                     <div class="modal-footer">
-                        <button class="btn btn-default" v-on:click="OpenPrintPage">
+                        <button class="btn btn-default" v-bind:disabled="SelectedDoc == ''" v-on:click="OpenPrintPage">
                             Show
                         </button>
                         <button class="btn btn-default"v-on:click="$emit('close')">

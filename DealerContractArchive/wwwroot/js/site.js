@@ -4,6 +4,7 @@ const UploadContractApiUrl = "/api/HomeApi/UploadScan";
 const GetScanPdfApiUrl = "/Scan/index?contractId="
 //http://localhost:62729/Document/GetDocument?contractid=1&docName=Document_A_2
 const GetDocumentApiUrl = "/Document/GetDocument?";
+const current_host = window.location.protocol + '//' + window.location.host;
 
 var ContractsListing = {
     name: 'ContractsListing',
@@ -192,7 +193,8 @@ Vue.component('newcontract-modal', {
         DoAddContract: function () {
             var that = this;
             that.$data.AddingContract = 1;
-            var url = window.ServerUrl + AddContractApiUrl;
+            var url = current_host + AddContractApiUrl;
+            console.log(url);
             axios.post(url, {
                 Name: that.$data.Name,
                 Address: that.$data.Address,
