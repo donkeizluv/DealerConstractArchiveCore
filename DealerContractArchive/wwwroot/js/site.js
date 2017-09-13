@@ -2,7 +2,6 @@
 const AddContractApiUrl = "/api/HomeApi/AddNewContract";
 const UploadContractApiUrl = "/api/HomeApi/UploadScan";
 const GetScanPdfApiUrl = "/Scan/index?contractId="
-//http://localhost:62729/Document/GetDocument?contractid=1&docName=Document_A_2
 const GetDocumentApiUrl = "/Document/GetDocument?";
 const CurrentHost = window.location.protocol + '//' + window.location.host;
 
