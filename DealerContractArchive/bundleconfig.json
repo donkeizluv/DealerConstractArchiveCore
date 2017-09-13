@@ -22,7 +22,7 @@
     "minify": {
       "outputMode": "none",
       "termSemicolons": true,
-      "enabled": false, //cant minify cuz watch '$route' fucks it up
+      "enabled": true, //cant minify cuz watch '$route' fucks it up
       "renameLocals": true
     },
     // Optionally generate .map file

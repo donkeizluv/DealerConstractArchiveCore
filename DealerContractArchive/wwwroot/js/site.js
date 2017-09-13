@@ -2,6 +2,7 @@
 const GetContractsListApiUrl = "/api/HomeApi/GetContractViewerModel?";
 const AddContractApiUrl = "/api/HomeApi/AddNewContract";
 const UploadContractApiUrl = "/api/HomeApi/UploadScan";
+const GetScanPdfApiUrl = "/Scan/index?contractId="
 
 var ContractsListing = {
     name: 'ContractsListing',
@@ -27,8 +28,11 @@ var ContractsListing = {
             this.$emit('changepageclicked', page);
         },
         UploadContractClicked: function (id) {
-            this.$emit('uploadcontractclicked', id)
-        }
+            this.$emit('uploadcontractclicked', id);
+        },
+        OpenScanPdfClicked: function (id) {
+            this.$emit('openscannedpdfclicked', id);
+        },
 
     }
 };
@@ -110,9 +114,10 @@ var UploadModal = {
             this.$data.Uploading = 0;
             this.$data.Progress = 0;
             this.$data.Uploadable = false;
+            //this.$emit('uploadcontractcompleted');
         },
         uploadprogresschange: function(progress, totalBytes, bytesSent) {
-            console.log(progress);
+            //console.log(progress);
             this.$data.Progress = progress;
         }
     }
@@ -167,13 +172,13 @@ Vue.component('newcontract-modal', {
                 ScannedContractUrl: null
             })
                 .then(function (response) {
-                    console.log(response);
+                    //console.log(response);
                     that.SetStatus("Success!");
                     that.$data.AddingContract = 0;
                     that.ClearData();
                 })
                 .catch(function (error) {
-                    console.log(error);
+                    //console.log(error);
                     that.SetStatus("Fail to add contract, status: " + error.response.status);
                     that.$data.AddingContract = 0;
                     that.ClearData();
@@ -226,10 +231,13 @@ var vm = new Vue({
             }
             return false;
         },
-        ApiPrefix: function () {
-            return window.location.href + GetContractsListApiUrl;
+        CurrentHost: function () {
+            return window.location.protocol + '//' + window.location.host;
         },
-        GetCurrentApi: function () {
+        ContractsListingApiPrefix: function () {
+            return this.CurrentHost + GetContractsListApiUrl;
+        },
+        GetCurrentContractsListingApi: function () {
             var page = this.$data.OnPage;
             if (page < 1 || page == null) page = 1;
             var type = this.$data.SelectedFilterValue;
@@ -241,18 +249,18 @@ var vm = new Vue({
                 this.$data.SearchString = contains;
                 apiSuffix = apiSuffix + "&type=" + type + "&contains=" + contains;
             }
-            return this.ApiPrefix + apiSuffix;
+            return this.ContractsListingApiPrefix + apiSuffix;
         }
     },
     //notify router changes
     watch: {
         $route: function(to, from) {
-            console.log(to);
+            //console.log(to);
             //updates on backkey
             this.$data.SearchString = to.query.contains;
             this.$data.SelectedFilterValue = to.query.type;
             this.$data.OnPage = to.query.page;
-            this.LoadContracts(this.GetCurrentApi);
+            this.LoadContracts(this.GetCurrentContractsListingApi);
         }
     },
 
@@ -273,12 +281,12 @@ var vm = new Vue({
             this.$data.OnPage = page;
             this.$data.SearchString = contains;
             this.$data.SelectedFilterValue = type;
-            this.LoadContracts(this.GetCurrentApi);
+            this.LoadContracts(this.GetCurrentContractsListingApi);
         },
         //load contracts on startup
         LoadContracts: function (url) {
             var that = this;
-            //console.log(url);
+            console.log(url);
             axios.get(url)
                 .then(function (response) {
                     that.$data.ContractViewerModel = response.data;
@@ -306,10 +314,21 @@ var vm = new Vue({
         AddNewContractClicked: function () {
             this.$data.ShowAddContractModal = true;
         },
+        //open new tab show scan
+        OpenNewScanPage: function (id) {
+            var url = this.CurrentHost + GetScanPdfApiUrl + id;
+            console.log(url);
+            window.open(this.CurrentHost + GetScanPdfApiUrl + id);
+        },
 
         ShowUploadModalHandler: function (id) {
             this.$data.ShowUploadModal = true;
             this.$data.UploadToContractId = id;
+        },
+
+        OnCloseUploadModal: function () {
+            this.$data.ShowUploadModal = false;
+            this.LoadContracts(this.GetCurrentContractsListingApi);
         },
 
         SearchButtonClicked: function () {
@@ -324,6 +343,7 @@ var vm = new Vue({
             router.push({ path: '/', query: this.GetSearchQuery(page) });
 
         },
+
         GetSearchQuery: function (pageNumber) {
             return {
                 page: pageNumber,

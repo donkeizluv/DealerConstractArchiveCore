@@ -1,10 +1,8 @@
 ﻿<template id="Contracts-Listing-Template">
     <div>
-        <table class="table table-hover">
+        <table class="table table-striped">
             <thead>
                 <tr>
-                    @*use class instead of h3*@
-                    <td></td>@* why?*@
                     <td><h4>#</h4></td>
                     <td><h4>Name</h4></td>
                     <td><h4>Address</h4></td>
@@ -18,25 +16,36 @@
             <tbody>
                 @*how to click row*@
                 @*<tr v-for="contract in Contracts" class="row" v-on:click="DataRowClicked(contract)">*@
-                <tr v-for="contract in contracts" class="row">
+                <tr v-for="contract in contracts" >
                     <td>{{ contract.ContractId }}</td>
                     <td>{{ contract.Name }}</td>
                     <td>{{ contract.Address }}</td>
                     <td>{{ contract.Commission }}</td>
                     <td>
                         <div v-if="contract.ScannedContractUrl == null">
-                            <button v-on:click="UploadContractClicked(contract.ContractId)" class="btn btn-default">
-                                <span class="glyphicon glyphicon-cloud-upload"></span> 
+                            @*upload scan button*@
+                            <button v-on:click="UploadContractClicked(contract.ContractId)" class="btn-link">
+                                <span class="glyphicon glyphicon-arrow-up"></span> 
                             </button>
                         </div>
-                        <div v-else>Show</div>
+                        @*show scan button*@ 
+                        <div v-else>
+                            <button v-on:click="OpenScanPdfClicked(contract.ContractId)" class="btn-link">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                            </button>
+                        </div>
                     </td>
                     <td>
                         <div class="text-success" v-if=contract.Effective>Yes</div>
                         <div class="text-danger" v-else>No</div>
                     </td>
                     <td>{{ contract.Username }}</td>
-                    <td>Print</td>
+                    <td>
+                        @*show document selector modal*@
+                        <button class="btn-link">
+                            <span class="glyphicon glyphicon-print"></span>
+                        </button>
+                    </td>
                 </tr>
             </tbody>
         </table>

@@ -1,54 +1,55 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-@*Constract-Listing-Template*@
+<!--Constract-Listing-Template-->
 @Html.Partial("_ContractsListingTemplate")
 @Html.Partial("_AddContractModalTemplate")
 @Html.Partial("_UploadScannedModalTemplate")
 <div id="app" class="text-center">
     &nbsp;
     &nbsp;
-    @*pops up modal*@
-    <newcontract-modal v-if="ShowAddContractModal" v-on:close="ShowAddContractModal = false">
+
+    <!--pops up modal-->
+    <newcontract-modal v-if="ShowAddContractModal" 
+                       v-on:close="ShowAddContractModal = false">
     </newcontract-modal>
-
-    @*pops up modal*@
-    <upload-modal v-if="ShowUploadModal" v-on:close="ShowUploadModal = false" v-bind:contractid="UploadToContractId">
+    <upload-modal v-if="ShowUploadModal" 
+                  v-on:close="OnCloseUploadModal" 
+                  v-bind:contractid="UploadToContractId">
     </upload-modal>
-
-    @*search bar*@
+    <!--search bar-->
     @Html.Partial("_SearchBar")
-    @*add new record button*@
-
     &nbsp;
     &nbsp;
-    @*router displays*@
+    <!--INFO: what if router change to other component? what will happen to all these bindings?
+    new nested Vue instance for earch component?-->
     <router-view class="view"
                  v-bind:contracts="ContractModels"
                  v-bind:currentpage="OnPage"
                  v-bind:totalpages="TotalPages"
                  v-bind:totalrows="TotalRows"
                  v-on:changepageclicked="PageNavClicked"
-                 v-on:uploadcontractclicked="ShowUploadModalHandler"></router-view>
-    @*even though we dont pass any variables to handler but the method does receive the value got pass to this.emit
-        from the component wtf?*@
+                 v-on:uploadcontractclicked="ShowUploadModalHandler"
+                 v-on:openscannedpdfclicked="OpenNewScanPage">
+    </router-view>
+    <!--even though we dont pass any variables to handler but the method does receive the value got pass to this.emit
+        from the component wtf?-->
 </div>
 
 <environment include="Development">
-    @*vue related*@
+    <!--vue related-->
     <script src="~/lib/vue/dist/vue.js"></script>
     <script src="~/lib/axios/dist/axios.js"></script>
     <script src="~/lib/vee-validate/dist/vee-validate.js"></script>
     <script src="~/lib/vue-router/dist/vue-router.js"></script>
     <script src="~/lib/vue-clip/dist/vue-clip.js"></script>
-    @*<script src="~/lib/vue-dropzone/dist/vue2-dropzone.js"></script>*@
-    
+    <!--<script src="~/lib/vue-dropzone/dist/vue2-dropzone.js"></script>-->
     <script src="~/js/site.js"></script>
-    @*<script src="~/js/site.min.js"></script>*@
+    <!--<script src="~/js/site.min.js"></script>-->
 </environment>
-@*prod*@
-@*<environment exclude="Development">
+<!--prod-->
+<!--<environment exclude="Development">
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="~/js/site.min.js"></script>
-</environment>*@
+</environment>-->

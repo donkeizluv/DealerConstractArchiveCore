@@ -85,7 +85,7 @@ namespace DealerContractArchive.Views
         //setting....
         private const string AcceptedUploadType = "application/pdf";
         private readonly double MinFileLength = 0;
-        private const string ScanFolder = "UploadedScans";
+
         [HttpPost("UploadScan")]
         public IActionResult UploadScan([FromQuery]int contractId)
         {
@@ -104,22 +104,19 @@ namespace DealerContractArchive.Views
                 {
                     throw new InvalidOperationException();
                 }
-                contract.ScannedContractUrl = FileNameMaker(file.FileName, contract.ContractId);
+                contract.ScannedContractUrl = EnviromentHelper.ScanFilePathMaker(file.FileName, contract.ContractId);
                 context.SaveChanges();
             }
             return Ok();
         }
-        private string FileNameMaker(string fileName, int index)
-        {
-            return $"contract_{index}_{fileName}";
-        }
+
         private bool SaveScan(IFormFile file, int index)
         {
             //do save
             //if file exists?
-            var path = Path.Combine(EnviromentHelper.RootPath, ScanFolder);
+            var path = Path.Combine(EnviromentHelper.RootPath, EnviromentHelper.ScanFolder);
             if (!Directory.Exists(path)) Directory.CreateDirectory(path);
-            var fileName = Path.Combine(path, FileNameMaker(file.FileName, index));
+            var fileName = Path.Combine(path, EnviromentHelper.ScanFilePathMaker(file.FileName, index));
             if ((new FileInfo(fileName)).Exists) return false;
             using (var stream = new FileStream(fileName, FileMode.Create))
             {

@@ -26,7 +26,8 @@ namespace DealerContractArchive
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<DbContext>(opt => opt.UseInMemoryDatabase("ContractsList"));
+            //what for?
+            //services.AddDbContext<DbContext>(opt => opt.UseInMemoryDatabase("ContractsList"));
             //https://github.com/aspnet/Mvc/issues/4842
             services.AddMvc().AddJsonOptions(options =>
             {
