@@ -6,10 +6,8 @@
 @Html.Partial("_AddContractModalTemplate")
 @Html.Partial("_UploadScannedModalTemplate")
 @Html.Partial("_PrintDocumentModalTemplate")
-
 <div id="app" class="text-center">
     &nbsp;
-
     <!--pops up modal-->
     <printdocument-modal v-if="ShowDocumentModal"
                          v-on:close="ShowDocumentModal = false"
@@ -25,7 +23,6 @@
     </upload-modal>
     <!--search bar-->
     @Html.Partial("_SearchBar")
-    &nbsp;
     <!--INFO: what if router change to other component? what will happen to all these bindings?
     new nested Vue instance for earch component?-->
     <router-view class="view"
