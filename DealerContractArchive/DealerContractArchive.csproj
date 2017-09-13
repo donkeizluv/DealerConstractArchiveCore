@@ -24,6 +24,7 @@
 
   <ItemGroup>
     <Folder Include="UploadedScans\" />
+    <Folder Include="Views\Document\" />
     <Folder Include="wwwroot\lib\axios\dist\" />
   </ItemGroup>
 

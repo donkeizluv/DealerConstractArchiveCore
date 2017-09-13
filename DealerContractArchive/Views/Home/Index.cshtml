@@ -5,11 +5,18 @@
 @Html.Partial("_ContractsListingTemplate")
 @Html.Partial("_AddContractModalTemplate")
 @Html.Partial("_UploadScannedModalTemplate")
+@Html.Partial("_PrintDocumentModalTemplate")
+
 <div id="app" class="text-center">
     &nbsp;
     &nbsp;
 
     <!--pops up modal-->
+    <printdocument-modal v-if="ShowDocumentModal"
+                         v-on:close="ShowDocumentModal = false"
+                         v-bind:docnames="DocumentNames"
+                         v-bind:contractid="ShowDocumentForId">
+    </printdocument-modal>
     <newcontract-modal v-if="ShowAddContractModal" 
                        v-on:close="ShowAddContractModal = false">
     </newcontract-modal>
@@ -30,7 +37,8 @@
                  v-bind:totalrows="TotalRows"
                  v-on:changepageclicked="PageNavClicked"
                  v-on:uploadcontractclicked="ShowUploadModalHandler"
-                 v-on:openscannedpdfclicked="OpenNewScanPage">
+                 v-on:openscannedpdfclicked="OpenNewScanPage"
+                 v-on:printdocumentclicked="PrinDocumentModalHandler">
     </router-view>
     <!--even though we dont pass any variables to handler but the method does receive the value got pass to this.emit
         from the component wtf?-->

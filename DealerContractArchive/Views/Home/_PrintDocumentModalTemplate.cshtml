@@ -1,0 +1,27 @@
+﻿<script type="text/x-template" id="printdocument-modal-template">
+    <transition name="modal">
+        <div class="modal-mask">
+            <div class="modal-wrapper">
+                <div class="modal-container">
+                    <div>
+                        <h4>Upload PDF Document</h4>
+                    </div>
+                    <div class="modal-body">
+                        <label for="select">Document:</label>
+                        <select v-model="SelectedDoc" name="select" class="form-control">
+                            <option v-for="name in docnames">{{name}}</option>
+                        </select>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-default" v-on:click="OpenPrintPage">
+                            Show
+                        </button>
+                        <button class="btn btn-default"v-on:click="$emit('close')">
+                            Cancel
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </transition>
+</script>

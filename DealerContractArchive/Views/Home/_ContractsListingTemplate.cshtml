@@ -42,7 +42,7 @@
                     <td>{{ contract.Username }}</td>
                     <td>
                         @*show document selector modal*@
-                        <button class="btn-link">
+                        <button v-on:click="PrintDocumentClicked(contract.ContractId)" class="btn-link">
                             <span class="glyphicon glyphicon-print"></span>
                         </button>
                     </td>

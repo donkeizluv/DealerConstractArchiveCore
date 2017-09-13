@@ -18,6 +18,7 @@ namespace DealContractArchiver.Models
     public class ContractViewerModel
     {
         public List<ContractModel> ContractModels { get; set; }
+        public List<string> DocumentNames { get; set; }
         public bool IsFilterApplied { get; set; }
         public string FilterType { get; set; }
         public string FilterString { get; set; }

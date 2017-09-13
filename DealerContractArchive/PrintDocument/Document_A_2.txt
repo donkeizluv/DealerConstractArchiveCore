@@ -1,0 +1,186 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=utf-8">
+	<TITLE></TITLE>
+	<META NAME="GENERATOR" CONTENT="LibreOffice 4.1.6.2 (Linux)">
+	<META NAME="AUTHOR" CONTENT="Luu H?ng">
+	<META NAME="CREATED" CONTENT="20170913;71000000000000">
+	<META NAME="CHANGEDBY" CONTENT="Luu H?ng">
+	<META NAME="CHANGED" CONTENT="20170913;93900000000000">
+	<META NAME="AppVersion" CONTENT="15.0000">
+	<META NAME="DocSecurity" CONTENT="0">
+	<META NAME="HyperlinksChanged" CONTENT="false">
+	<META NAME="LinksUpToDate" CONTENT="false">
+	<META NAME="ScaleCrop" CONTENT="false">
+	<META NAME="ShareDoc" CONTENT="false">
+	<STYLE TYPE="text/css">
+	<!--
+		@page { size: 8.5in 11in; margin: 1in }
+		P { margin-bottom: 0.08in; direction: ltr; widows: 2; orphans: 2 }
+		H2 { margin-top: 0.03in; margin-bottom: 0in; direction: ltr; color: #2e74b5; page-break-inside: avoid; widows: 2; orphans: 2 }
+		H2.western { font-family: "Calibri Light", serif; font-size: 13pt; font-weight: normal }
+		H2.cjk { font-family: "Arial"; font-size: 13pt; font-weight: normal }
+		H2.ctl { font-family: ; font-size: 13pt; font-weight: normal }
+	-->
+	</STYLE>
+</HEAD>
+<BODY LANG="en-GB" DIR="LTR">
+<H2 CLASS="western" ALIGN=CENTER><A NAME="OLE_LINK11"></A><A NAME="OLE_LINK10"></A><A NAME="OLE_LINK9"></A><A NAME="OLE_LINK2"></A><A NAME="OLE_LINK1"></A>
+<SPAN LANG="en-US">Example Contract A_2</SPAN></H2>
+<P LANG="en-US" STYLE="margin-bottom: 0.11in"><BR><BR>
+</P>
+<P STYLE="margin-bottom: 0.11in"><SPAN LANG="en-US">Name: @name</SPAN></P>
+<P STYLE="margin-bottom: 0.11in"><SPAN LANG="en-US">Address: @address</SPAN></P>
+<P STYLE="margin-bottom: 0.11in"><SPAN LANG="en-US">Tax Id: @taxid</SPAN></P>
+<P LANG="en-US" STYLE="margin-bottom: 0.11in"><BR><BR>
+</P>
+<P STYLE="margin-bottom: 0.11in"><A NAME="OLE_LINK15"></A> <SPAN LANG="en-US">bla
+bla  Blab la bla Blab la bla Blab la bla Blab la bla Blab la bla Blab
+la bla Blab la blabla blab la </SPAN>
+</P>
+<P STYLE="margin-bottom: 0.11in"><SPAN LANG="en-US">bla bla  Blab la
+bla Blab la bla Blab la bla Blab la bla Blab la bla Blab la bla Blab
+la blabla blab la </SPAN>
+</P>
+<P STYLE="margin-bottom: 0.11in"><SPAN LANG="en-US">bla bla  Blab la
+bla Blab la bla Blab la bla Blab la bla Blab la bla Blab la bla Blab
+la blabla blab la </SPAN>
+</P>
+<P STYLE="margin-bottom: 0.11in"><A NAME="OLE_LINK20"></A><A NAME="OLE_LINK19"></A><A NAME="OLE_LINK18"></A><A NAME="OLE_LINK17"></A><A NAME="OLE_LINK16"></A>
+<SPAN LANG="en-US">bla bla  Blab la bla Blab la bla Blab la bla Blab
+la bla Blab la bla Blab la bla Blab la blabla blab la </SPAN>
+</P>
+<P STYLE="margin-bottom: 0.11in"><SPAN LANG="en-US">bla bla  Blab la
+bla Blab la bla Blab la bla Blab la bla Blab la bla Blab la bla Blab
+la blabla blab la </SPAN>
+</P>
+<P STYLE="margin-bottom: 0.11in"><SPAN LANG="en-US">bla bla  Blab la
+bla Blab la bla Blab la bla Blab la bla Blab la bla Blab la bla Blab
+la blabla blab la </SPAN>
+</P>
+<P STYLE="margin-bottom: 0.11in"><SPAN LANG="en-US"><BR></SPAN><BR><BR>
+</P>
+<P STYLE="margin-bottom: 0.11in"><SPAN LANG="en-US">bla bla  Blab la
+bla Blab la bla Blab la bla Blab la bla Blab la bla Blab la bla Blab
+la blabla blab la </SPAN>
+</P>
+<P STYLE="margin-bottom: 0.11in"><SPAN LANG="en-US">bla bla  Blab la
+bla Blab la bla Blab la bla Blab la bla Blab la bla Blab la bla Blab
+la blabla blab la </SPAN>
+</P>
+<P STYLE="margin-bottom: 0.11in"><SPAN LANG="en-US">bla bla  Blab la
+bla Blab la bla Blab la bla Blab la bla Blab la bla Blab la bla Blab
+la blabla blab la </SPAN>
+</P>
+<P STYLE="margin-bottom: 0.11in"><SPAN LANG="en-US">bla bla  Blab la
+bla Blab la bla Blab la bla Blab la bla Blab la bla Blab la bla Blab
+la blabla blab la </SPAN>
+</P>
+<P STYLE="margin-bottom: 0.11in"><SPAN LANG="en-US">bla bla  Blab la
+bla Blab la bla Blab la bla Blab la bla Blab la bla Blab la bla Blab
+la blabla blab la </SPAN>
+</P>
+<P STYLE="margin-bottom: 0.11in"><SPAN LANG="en-US">bla bla  Blab la
+bla Blab la bla Blab la bla Blab la bla Blab la bla Blab la bla Blab
+la blabla blab la </SPAN>
+</P>
+<P LANG="en-US" STYLE="margin-bottom: 0.11in"><BR><BR>
+</P>
+<P STYLE="margin-bottom: 0.11in"><SPAN LANG="en-US">bla bla  Blab la
+bla Blab la bla Blab la bla Blab la bla Blab la bla Blab la bla Blab
+la blabla blab la </SPAN>
+</P>
+<P STYLE="margin-bottom: 0.11in"><SPAN LANG="en-US">bla bla  Blab la
+bla Blab la bla Blab la bla Blab la bla Blab la bla Blab la bla Blab
+la blabla blab la </SPAN>
+</P>
+<P STYLE="margin-bottom: 0.11in"><SPAN LANG="en-US">bla bla  Blab la
+bla Blab la bla Blab la bla Blab la bla Blab la bla Blab la bla Blab
+la blabla blab la </SPAN>
+</P>
+<P LANG="en-US" STYLE="margin-bottom: 0.11in"><BR><BR>
+</P>
+<P LANG="en-US" STYLE="margin-bottom: 0.11in"><A NAME="OLE_LINK14"></A><A NAME="OLE_LINK13"></A>
+<BR><BR>
+</P>
+<P LANG="en-US" STYLE="margin-bottom: 0.11in"><BR><BR>
+</P>
+<P STYLE="margin-bottom: 0.11in"><A NAME="OLE_LINK5"></A><A NAME="OLE_LINK4"></A><A NAME="OLE_LINK3"></A>
+<SPAN LANG="en-US">bla bla  Blab la bla Blab la bla Blab la bla Blab
+la bla Blab la bla Blab la bla Blab la blabla blab la </SPAN>
+</P>
+<P STYLE="margin-bottom: 0.11in"><SPAN LANG="en-US">bla bla  Blab la
+bla Blab la bla Blab la bla Blab la bla Blab la bla Blab la bla Blab
+la blabla blab la </SPAN>
+</P>
+<P STYLE="margin-bottom: 0.11in; page-break-before: always">Page 2:</P>
+<P STYLE="margin-bottom: 0.11in"><BR><BR>
+</P>
+<P STYLE="margin-bottom: 0.11in"><SPAN LANG="en-US">bla bla  Blab la
+bla Blab la bla Blab la bla Blab la bla Blab la bla Blab la bla Blab
+la blabla blab la </SPAN>
+</P>
+<P STYLE="margin-bottom: 0.11in"><SPAN LANG="en-US">bla bla  Blab la
+bla Blab la bla Blab la bla Blab la bla Blab la bla Blab la bla Blab
+la blabla blab la </SPAN>
+</P>
+<P STYLE="margin-bottom: 0.11in"><SPAN LANG="en-US">bla bla  Blab la
+bla Blab la bla Blab la bla Blab la bla Blab la bla Blab la bla Blab
+la blabla blab la </SPAN>
+</P>
+<P STYLE="margin-bottom: 0.11in"><BR><BR>
+</P>
+<P STYLE="margin-bottom: 0.11in"><BR><BR>
+</P>
+<P STYLE="margin-bottom: 0.11in"><SPAN LANG="en-US">bla bla  Blab la
+bla Blab la bla Blab la bla Blab la bla Blab la bla Blab la bla Blab
+la blabla blab la </SPAN>
+</P>
+<P STYLE="margin-bottom: 0.11in"><SPAN LANG="en-US">bla bla  Blab la
+bla Blab la bla Blab la bla Blab la bla Blab la bla Blab la bla Blab
+la blabla blab la </SPAN>
+</P>
+<P STYLE="margin-bottom: 0.11in"><SPAN LANG="en-US">bla bla  Blab la
+bla Blab la bla Blab la bla Blab la bla Blab la bla Blab la bla Blab
+la blabla blab la </SPAN>
+</P>
+<P STYLE="margin-bottom: 0.11in"><BR><BR>
+</P>
+<P STYLE="margin-bottom: 0.11in"><SPAN LANG="en-US">bla bla  Blab la
+bla Blab la bla Blab la bla Blab la bla Blab la bla Blab la bla Blab
+la blabla blab la </SPAN>
+</P>
+<P STYLE="margin-bottom: 0.11in"><SPAN LANG="en-US">bla bla  Blab la
+bla Blab la bla Blab la bla Blab la bla Blab la bla Blab la bla Blab
+la blabla blab la </SPAN>
+</P>
+<P STYLE="margin-bottom: 0.11in"><SPAN LANG="en-US">bla bla  Blab la
+bla Blab la bla Blab la bla Blab la bla Blab la bla Blab la bla Blab
+la blabla blab la </SPAN>
+</P>
+<P STYLE="margin-bottom: 0.11in"><BR><BR>
+</P>
+<P STYLE="margin-bottom: 0.11in"><BR><BR>
+</P>
+<P STYLE="margin-bottom: 0.11in"><SPAN LANG="en-US">bla bla  Blab la
+bla Blab la bla Blab la bla Blab la bla Blab la bla Blab la bla Blab
+la blabla blab la </SPAN>
+</P>
+<P STYLE="margin-bottom: 0.11in"><SPAN LANG="en-US">bla bla  Blab la
+bla Blab la bla Blab la bla Blab la bla Blab la bla Blab la bla Blab
+la blabla blab la </SPAN>
+</P>
+<P STYLE="margin-bottom: 0.11in"><SPAN LANG="en-US">bla bla  Blab la
+bla Blab la bla Blab la bla Blab la bla Blab la bla Blab la bla Blab
+la blabla blab la </SPAN>
+</P>
+<P STYLE="margin-bottom: 0.11in"><BR><BR>
+</P>
+<P STYLE="margin-bottom: 0.11in"><BR><BR>
+</P>
+<P STYLE="margin-bottom: 0.11in">									Sign</P>
+<P STYLE="margin-bottom: 0.11in"><BR><BR>
+</P>
+</BODY>
+</HTML>

@@ -1,8 +1,9 @@
-﻿
-const GetContractsListApiUrl = "/api/HomeApi/GetContractViewerModel?";
+﻿const GetContractsListApiUrl = "/api/HomeApi/GetContractViewerModel?";
 const AddContractApiUrl = "/api/HomeApi/AddNewContract";
 const UploadContractApiUrl = "/api/HomeApi/UploadScan";
 const GetScanPdfApiUrl = "/Scan/index?contractId="
+//http://localhost:62729/Document/GetDocument?contractid=1&docName=Document_A_2
+const GetDocumentApiUrl = "/Document/GetDocument?";
 
 var ContractsListing = {
     name: 'ContractsListing',
@@ -33,6 +34,9 @@ var ContractsListing = {
         OpenScanPdfClicked: function (id) {
             this.$emit('openscannedpdfclicked', id);
         },
+        PrintDocumentClicked: function (id) {
+            this.$emit('printdocumentclicked', id);
+        }
 
     }
 };
@@ -53,6 +57,34 @@ var router = new VueRouter({
 //resgister
 Vue.use(VueRouter);
 Vue.use(VeeValidate);
+//show document modal
+Vue.component('printdocument-modal', {
+    template: '#printdocument-modal-template',
+    props: ['docnames', 'contractid'],
+    data: function () {
+        return {
+            SelectedDoc: ""
+        };
+    },
+    computed: {
+        CurrentHost: function () {
+            return window.location.protocol + '//' + window.location.host;
+        },
+    },
+    methods: {
+        OpenPrintPage: function () {
+            var url = this.CurrentHost + GetDocumentApiUrl +
+                "contractid=" +
+                this.contractid +
+                "&docName=" +
+                this.$data.SelectedDoc;
+
+            //console.log(url);
+            window.open(url);
+        }
+    }
+});
+
 
 //upload modal component
 var UploadModal = {
@@ -208,18 +240,22 @@ var vm = new Vue({
     },
 
     data: {
-        ContractViewerModel: {},
-        ContractModels: {},
+        //may not need to store this
+        ContractViewerModel: [],
+        ContractModels: [],
         TotalRows: 0,
         TotalPages: 0,
         OnPage: 0,
+        DocumentNames: [],
 
         SelectedFilterValue: 2,
         SearchString: "",
 
         ShowAddContractModal: false,
         ShowUploadModal: false,
+        ShowDocumentModal: false,
         UploadToContractId: -1,
+        ShowDocumentForId: -1
     },
 
     computed: {
@@ -291,6 +327,7 @@ var vm = new Vue({
                 .then(function (response) {
                     that.$data.ContractViewerModel = response.data;
                     that.$data.ContractModels = response.data.ContractModels;
+                    that.$data.DocumentNames = response.data.DocumentNames;
                     that.UpdatePagination();
                 })
                 .catch(function (error) {
@@ -325,7 +362,10 @@ var vm = new Vue({
             this.$data.ShowUploadModal = true;
             this.$data.UploadToContractId = id;
         },
-
+        PrinDocumentModalHandler: function (id) {
+            this.$data.ShowDocumentModal = true;
+            this.$data.ShowDocumentForId = id;
+        },
         OnCloseUploadModal: function () {
             this.$data.ShowUploadModal = false;
             this.LoadContracts(this.GetCurrentContractsListingApi);

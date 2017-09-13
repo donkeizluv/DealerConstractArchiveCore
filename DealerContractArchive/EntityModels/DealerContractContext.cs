@@ -15,6 +15,7 @@ namespace DealerContractArchive.EntityModels
         {
             if (!optionsBuilder.IsConfigured)
             {
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
                 optionsBuilder.UseSqlServer(@"data source=(localdb)\local;initial catalog=DealerContract;Integrated Security=true;");
             }
         }
@@ -52,9 +53,7 @@ namespace DealerContractArchive.EntityModels
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.Property(e => e.ScannedContractUrl)
-                    .HasMaxLength(150)
-                    .IsUnicode(true);
+                entity.Property(e => e.ScannedContractUrl).HasMaxLength(100);
 
                 entity.Property(e => e.TaxId)
                     .IsRequired()
@@ -73,6 +72,10 @@ namespace DealerContractArchive.EntityModels
                 entity.HasKey(e => e.DocumentId);
 
                 entity.Property(e => e.Date).HasColumnType("date");
+
+                entity.Property(e => e.Filename)
+                    .IsRequired()
+                    .HasMaxLength(100);
 
                 entity.Property(e => e.Name)
                     .IsRequired()

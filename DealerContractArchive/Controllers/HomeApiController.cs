@@ -30,6 +30,7 @@ namespace DealerContractArchive.Views
             model.FilterType = filterColumnName.ToString();
             model.IsFilterApplied = filter;
             model.FilterString = contains;
+            model.DocumentNames = GetDocumentNames();
             int totalRows;
             if (filter && !string.IsNullOrEmpty(contains))
             {
@@ -109,7 +110,19 @@ namespace DealerContractArchive.Views
             }
             return Ok();
         }
-
+        private List<string> GetDocumentNames()
+        {
+            using (var context = new DealerContractContext())
+            {
+                var list = new List<string>();
+                foreach (var doc in context.Documents)
+                {
+                    if (!doc.Effective) continue;
+                    list.Add(doc.Name);
+                }
+                return list;
+            }
+        }
         private bool SaveScan(IFormFile file, int index)
         {
             //do save

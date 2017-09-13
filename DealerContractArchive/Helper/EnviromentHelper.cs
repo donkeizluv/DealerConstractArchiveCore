@@ -8,6 +8,7 @@ namespace DealerContractArchive.Helper
     public static class EnviromentHelper
     {
         public static string ScanFolder = "UploadedScans";
+        public static string DocumentFolder = "PrintDocument";
         public static string RootPath { get; set; }
         public static string ScanFilePathMaker(string fileName, int index)
         {
@@ -16,6 +17,10 @@ namespace DealerContractArchive.Helper
         public static string GetScanfileFullPath(string fileName, int index)
         {
             return $"{RootPath}\\{ScanFolder}\\{fileName}";
+        }
+        public static string GetDocumentFullPath(string fileName)
+        {
+            return $"{RootPath}\\{DocumentFolder}\\{fileName}";
         }
     }
 }
