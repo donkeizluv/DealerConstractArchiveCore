@@ -12,15 +12,11 @@
   {
     "outputFileName": "wwwroot/js/site.min.js",
     "inputFiles": [
-      "wwwroot/lib/axios/dist/axios.js",
-      "wwwroot/lib/vee-validate/dist/vee-validate.js",
-      "wwwroot/lib/vue-router/dist/vue-router.js",
-      "wwwroot/lib/vue/dist/vue.js",
       "wwwroot/js/site.js"
     ],
     // Optionally specify minification options
     "minify": {
-      "outputMode": "none",
+      "outputMode": "singleLine",
       "termSemicolons": true,
       "enabled": true, //cant minify cuz watch '$route' fucks it up
       "renameLocals": true

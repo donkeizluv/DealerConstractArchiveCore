@@ -10,7 +10,6 @@
     "vue-router": "~2.7.0",
     "axios": "v0.16.2",
     "vue": "v2.4.2",
-    "vue-dropzone": "https://github.com/rowanwins/vue-dropzone.git#2.3.5",
     "vue-clip": "https://github.com/thetutlage/vue-clip.git#1.0.0"
   },
   "resolutions": {

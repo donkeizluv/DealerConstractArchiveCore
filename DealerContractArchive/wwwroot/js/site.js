@@ -286,7 +286,7 @@ var vm = new Vue({
         //load contracts on startup
         LoadContracts: function (url) {
             var that = this;
-            console.log(url);
+            //console.log(url);
             axios.get(url)
                 .then(function (response) {
                     that.$data.ContractViewerModel = response.data;
@@ -317,7 +317,7 @@ var vm = new Vue({
         //open new tab show scan
         OpenNewScanPage: function (id) {
             var url = this.CurrentHost + GetScanPdfApiUrl + id;
-            console.log(url);
+            //console.log(url);
             window.open(this.CurrentHost + GetScanPdfApiUrl + id);
         },
 
