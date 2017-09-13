@@ -4,7 +4,7 @@ const UploadContractApiUrl = "/api/HomeApi/UploadScan";
 const GetScanPdfApiUrl = "/Scan/index?contractId="
 //http://localhost:62729/Document/GetDocument?contractid=1&docName=Document_A_2
 const GetDocumentApiUrl = "/Document/GetDocument?";
-const current_host = window.location.protocol + '//' + window.location.host;
+const CurrentHost = window.location.protocol + '//' + window.location.host;
 
 var ContractsListing = {
     name: 'ContractsListing',
@@ -67,14 +67,10 @@ Vue.component('printdocument-modal', {
             SelectedDoc: ""
         };
     },
-    computed: {
-        CurrentHost: function () {
-            return window.location.protocol + '//' + window.location.host;
-        },
-    },
+
     methods: {
         OpenPrintPage: function () {
-            var url = this.CurrentHost + GetDocumentApiUrl +
+            var url = CurrentHost + GetDocumentApiUrl +
                 "contractid=" +
                 this.contractid +
                 "&docName=" +
@@ -193,7 +189,7 @@ Vue.component('newcontract-modal', {
         DoAddContract: function () {
             var that = this;
             that.$data.AddingContract = 1;
-            var url = current_host + AddContractApiUrl;
+            var url = CurrentHost + AddContractApiUrl;
             console.log(url);
             axios.post(url, {
                 Name: that.$data.Name,
@@ -269,12 +265,11 @@ var vm = new Vue({
             }
             return false;
         },
-        CurrentHost: function () {
-            return window.location.protocol + '//' + window.location.host;
-        },
+
         ContractsListingApiPrefix: function () {
-            return this.CurrentHost + GetContractsListApiUrl;
+            return CurrentHost + GetContractsListApiUrl;
         },
+
         GetCurrentContractsListingApi: function () {
             var page = this.$data.OnPage;
             if (page < 1 || page == null) page = 1;
@@ -355,9 +350,9 @@ var vm = new Vue({
         },
         //open new tab show scan
         OpenNewScanPage: function (id) {
-            var url = this.CurrentHost + GetScanPdfApiUrl + id;
+            var url = CurrentHost + GetScanPdfApiUrl + id;
             //console.log(url);
-            window.open(this.CurrentHost + GetScanPdfApiUrl + id);
+            window.open(url);
         },
 
         ShowUploadModalHandler: function (id) {
