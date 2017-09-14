@@ -18,7 +18,7 @@
     "minify": {
       "outputMode": "singleLine",
       "termSemicolons": true,
-      "enabled": true, //cant minify cuz watch '$route' fucks it up
+      "enabled": true,
       "renameLocals": true
     },
     // Optionally generate .map file

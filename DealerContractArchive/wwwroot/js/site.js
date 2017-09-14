@@ -49,9 +49,7 @@ var router = new VueRouter({
         { name: 'default', path: '/', component: ContractsListing } //retuns default page = 1
         //{ path: '/:page', component: ContractsListing },
         //{ path: '/:page/:type/:contains', component: ContractsListing }
-
     ]
-
 });
 
 //resgister
@@ -90,6 +88,8 @@ var UploadModal = {
     //data: personal data -> do whatever want!
     //https://github.com/thetutlage/vue-clip
 
+
+    //doesnt work!
     computed: {
         progressStyle: function () {
             return {
@@ -109,7 +109,7 @@ var UploadModal = {
                 maxFiles: 1,
                 acceptedFiles: {
                     extensions: ['application/pdf'],
-                    message: 'You are uploading an invalid file'
+                    message: 'You are uploading an invalid file!'
                 }
             },
             Uploading: 0,
@@ -144,6 +144,7 @@ var UploadModal = {
             this.$data.Uploadable = false;
             //this.$emit('uploadcontractcompleted');
         },
+        //doesnt work!
         uploadprogresschange: function(progress, totalBytes, bytesSent) {
             //console.log(progress);
             this.$data.Progress = progress;
@@ -172,7 +173,7 @@ Vue.component('newcontract-modal', {
         AddContract: function () {
             var that = this;
             //ref: http://vee-validate.logaretm.com/
-            that.$validator.validateAll().then((result) => {
+            that.$validator.validateAll().then( function(result) {
                 if (!result) {
                     // eslint-disable-next-line
                     that.SetStatus("Errors in inputs.");

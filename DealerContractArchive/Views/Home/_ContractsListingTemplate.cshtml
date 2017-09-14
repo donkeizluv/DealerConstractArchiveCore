@@ -6,6 +6,7 @@
                     <td><h4>#</h4></td>
                     <td><h4>Name</h4></td>
                     <td><h4>Address</h4></td>
+                    <td><h4>Tax Id</h4></td>
                     <td><h4>Commision</h4></td>
                     <td><h4>Scanned</h4></td>
                     <td><h4>Effective</h4></td>
@@ -20,6 +21,7 @@
                     <td>{{ contract.ContractId }}</td>
                     <td>{{ contract.Name }}</td>
                     <td>{{ contract.Address }}</td>
+                    <td>{{ contract.TaxId }}</td>
                     <td>{{ contract.Commission }}</td>
                     <td>
                         <div v-if="contract.ScannedContractUrl == null">

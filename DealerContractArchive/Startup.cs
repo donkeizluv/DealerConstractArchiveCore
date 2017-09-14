@@ -26,19 +26,11 @@ namespace DealerContractArchive
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //what for?
-            //services.AddDbContext<DbContext>(opt => opt.UseInMemoryDatabase("ContractsList"));
             //https://github.com/aspnet/Mvc/issues/4842
             services.AddMvc().AddJsonOptions(options =>
             {
                 options.SerializerSettings.ContractResolver = new DefaultContractResolver();
             });
-
-            //uhmm any cons?
-            //services.AddMvc(options =>
-            //{
-            //    options.ReturnHttpNotAcceptable = false;
-            //});
         }
         
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
