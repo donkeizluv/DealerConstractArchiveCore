@@ -10,13 +10,16 @@
     ]
   },
   {
-    "outputFileName": "wwwroot/js/site.min.js",
+    "outputFileName": "wwwroot/js/Home/Home.min.js",
     "inputFiles": [
-      "wwwroot/js/site.js"
+      "wwwroot/js/Home/Components/ContractsListing.js",
+      "wwwroot/js/Home/Components/NewContractModal.js",
+      "wwwroot/js/Home/Components/PrintDocumentModal.js",
+      "wwwroot/js/Home/Components/UploadScanModal.js",
+      "wwwroot/js/Home/Home.js"
     ],
     // Optionally specify minification options
     "minify": {
-      "outputMode": "singleLine",
       "termSemicolons": true,
       "enabled": true,
       "renameLocals": true

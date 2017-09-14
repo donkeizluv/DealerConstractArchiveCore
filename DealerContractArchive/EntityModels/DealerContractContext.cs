@@ -16,13 +16,13 @@ namespace DealerContractArchive.EntityModels
             if (!optionsBuilder.IsConfigured)
             {
                 //TODO: config
-                //optionsBuilder.UseSqlServer(@"data source=(localdb)\local;initial catalog=DealerContract;Integrated Security=true;");
-                optionsBuilder.UseSqlServer(@"data source=PRD-VN-HDESK01\SQLEXPRESS;
-                    initial catalog=DealerContract;
-                    persist security info=True;
-                    user id=sa_dev;password=760119;
-                    MultipleActiveResultSets=True;
-                    App=EntityFramework");
+                optionsBuilder.UseSqlServer(@"data source=(localdb)\local;initial catalog=DealerContract;Integrated Security=true;");
+                //optionsBuilder.UseSqlServer(@"data source=PRD-VN-HDESK01\SQLEXPRESS;
+                //    initial catalog=DealerContract;
+                //    persist security info=True;
+                //    user id=sa_dev;password=760119;
+                //    MultipleActiveResultSets=True;
+                //    App=EntityFramework");
 
             }
         }

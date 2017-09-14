@@ -38,7 +38,6 @@
     <!--even though we dont pass any variables to handler but the method does receive the value got pass to this.emit
         from the component wtf?-->
 </div>
-<script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script>
 <environment include="Development">
     <!--vue related-->
     <script src="~/lib/vue/dist/vue.js"></script>
@@ -46,7 +45,12 @@
     <script src="~/lib/vee-validate/dist/vee-validate.js"></script>
     <script src="~/lib/vue-router/dist/vue-router.js"></script>
     <script src="~/lib/vue-clip/dist/vue-clip.js"></script>
-    <script src="~/js/site.js"></script>
+    @*<script src="~/js/Home/Components/ContractsListing.js"></script>
+    <script src="~/js/Home/Components/NewContractModal.js"></script>
+    <script src="~/js/Home/Components/PrintDocumentModal.js"></script>
+    <script src="~/js/Home/Components/UploadScanModal.js"></script>
+    <script src="~/js/Home/Home.js"></script>*@
+    <script src="~/js/Home/Home.min.js"></script>
 </environment>
 <!--prod-->
 <environment exclude="Development">
