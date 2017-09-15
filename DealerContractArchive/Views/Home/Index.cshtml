@@ -2,41 +2,15 @@
     ViewData["Title"] = "Home Page";
 }
 <!--Constract-Listing-Template-->
+@Html.Partial("_LoginTemplate")
 @Html.Partial("_ContractsListingTemplate")
 @Html.Partial("_AddContractModalTemplate")
 @Html.Partial("_UploadScannedModalTemplate")
 @Html.Partial("_PrintDocumentModalTemplate")
-<div id="app" class="text-center">
     &nbsp;
-    <!--pops up modal-->
-    <printdocument-modal v-if="ShowDocumentModal"
-                         v-on:close="ShowDocumentModal = false"
-                         v-bind:docnames="DocumentNames"
-                         v-bind:contractid="ShowDocumentForId">
-    </printdocument-modal>
-    <newcontract-modal v-if="ShowAddContractModal" 
-                       v-on:close="ShowAddContractModal = false">
-    </newcontract-modal>
-    <upload-modal v-if="ShowUploadModal" 
-                  v-on:close="OnCloseUploadModal" 
-                  v-bind:contractid="UploadToContractId">
-    </upload-modal>
-    <!--search bar-->
-    @Html.Partial("_SearchBar")
-    <!--INFO: what if router change to other component? what will happen to all these bindings?
-    new nested Vue instance for earch component?-->
-    <router-view class="view"
-                 v-bind:contracts="ContractModels"
-                 v-bind:currentpage="OnPage"
-                 v-bind:totalpages="TotalPages"
-                 v-bind:totalrows="TotalRows"
-                 v-on:changepageclicked="PageNavClicked"
-                 v-on:uploadcontractclicked="ShowUploadModalHandler"
-                 v-on:openscannedpdfclicked="OpenNewScanPage"
-                 v-on:printdocumentclicked="PrinDocumentModalHandler">
+<div id="app" class="text-center">
+    <router-view class="view">
     </router-view>
-    <!--even though we dont pass any variables to handler but the method does receive the value got pass to this.emit
-        from the component wtf?-->
 </div>
 <environment include="Development">
     <!--vue related-->
@@ -46,10 +20,11 @@
     <script src="~/lib/vue-router/dist/vue-router.js"></script>
     <script src="~/lib/vue-clip/dist/vue-clip.js"></script>
 
-    <script src="~/js/Home/Components/ContractsListing.js"></script>
     <script src="~/js/Home/Components/NewContractModal.js"></script>
     <script src="~/js/Home/Components/PrintDocumentModal.js"></script>
     <script src="~/js/Home/Components/UploadScanModal.js"></script>
+    <script src="~/js/Home/Components/ContractsListing.js"></script> @*calls modals so load it last*@
+    <script src="~/js/Home/Components/Login.js"></script>
     <script src="~/js/Home/Home.js"></script>
     @*<script src="~/js/Home/Home.min.js"></script>*@
 </environment>

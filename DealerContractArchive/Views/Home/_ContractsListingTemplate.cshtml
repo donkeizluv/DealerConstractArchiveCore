@@ -1,5 +1,20 @@
 ﻿<template id="Contracts-Listing-Template">
     <div>
+        <!--pops up modal-->
+        <printdocument-modal v-if="ShowDocumentModal"
+                             v-on:close="ShowDocumentModal = false"
+                             v-bind:docnames="DocumentNames"
+                             v-bind:contractid="ShowDocumentForId">
+        </printdocument-modal>
+        <newcontract-modal v-if="ShowAddContractModal"
+                           v-on:close="ShowAddContractModal = false">
+        </newcontract-modal>
+        <upload-modal v-if="ShowUploadModal"
+                      v-on:close="OnCloseUploadModal"
+                      v-bind:contractid="UploadToContractId">
+        </upload-modal>
+        <!--search bar-->
+        @Html.Partial("_SearchBar")
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -17,7 +32,7 @@
             <tbody>
                 @*how to click row*@
                 @*<tr v-for="contract in Contracts" class="row" v-on:click="DataRowClicked(contract)">*@
-                <tr v-for="contract in contracts" >
+                <tr v-for="contract in ContractModels" >
                     <td>{{ contract.ContractId }}</td>
                     <td>{{ contract.Name }}</td>
                     <td>{{ contract.Address }}</td>
@@ -26,13 +41,13 @@
                     <td>
                         <div v-if="contract.ScannedContractUrl == null">
                             @*upload scan button*@
-                            <button v-on:click="UploadContractClicked(contract.ContractId)" class="btn-link">
+                            <button v-on:click="ShowUploadModalHandler(contract.ContractId)" class="btn-link">
                                 <span class="glyphicon glyphicon-arrow-up"></span> 
                             </button>
                         </div>
                         @*show scan button*@ 
                         <div v-else>
-                            <button v-on:click="OpenScanPdfClicked(contract.ContractId)" class="btn-link">
+                            <button v-on:click="OpenNewScanPage(contract.ContractId)" class="btn-link">
                                 <span class="glyphicon glyphicon-eye-open"></span>
                             </button>
                         </div>
@@ -44,7 +59,7 @@
                     <td>{{ contract.Username }}</td>
                     <td>
                         @*show document selector modal*@
-                        <button v-on:click="PrintDocumentClicked(contract.ContractId)" class="btn-link">
+                        <button v-on:click="PrinDocumentModalHandler(contract.ContractId)" class="btn-link">
                             <span class="glyphicon glyphicon-print"></span>
                         </button>
                     </td>
@@ -55,32 +70,32 @@
         <div class="row">
                 <ul class="pagination pagination-sm">
                     @*goes to first*@
-                    <li v-if="currentpage == 1" class="disabled">
+                    <li v-if="OnPage == 1" class="disabled">
                         <button class="btn btn-default" disabled="">&laquo;</button>
                         </li>
                     <li v-else>
-                        <button class="btn btn-default" type="button" v-on:click="ChangePageClicked(1)">&laquo;</button>
+                        <button class="btn btn-default" type="button" v-on:click="PageNavClicked(1)">&laquo;</button>
                     </li>
                     @*page number*@
-                    <li  v-for="index in totalpages">
+                    <li  v-for="index in TotalPages">
                         @*<router-link v-bind:to="GetSearchQueryRoute">{{index}}</router-link>*@
-                        <button v-bind:class="[index == currentpage ? 'btn btn-primary' : 'btn btn-default']" 
+                        <button v-bind:class="[index == OnPage ? 'btn btn-primary' : 'btn btn-default']" 
                                 type="button" 
-                                v-on:click="ChangePageClicked(index)">
+                                v-on:click="PageNavClicked(index)">
                             {{index}}
                         </button>
                     </li>
                     @*goes to last*@
-                    <li v-if="currentpage == totalpages" class="disabled">
+                    <li v-if="OnPage == TotalPages" class="disabled">
                         <button class="btn btn-default" disabled="">&raquo;</button>
                     </li>
                     <li v-else>
-                        <button class="btn btn-default" type="button" v-on:click="ChangePageClicked(totalpages)">&raquo;</button>
+                        <button class="btn btn-default" type="button" v-on:click="PageNavClicked(TotalPages)">&raquo;</button>
                     </li>
                 </ul>
         </div>
         <div class="row">
-            <div><span>Total Records: {{totalrows}}</span></div>
+            <div><span>Total Records: {{TotalRows}}</span></div>
         </div>
     </div>
 </template>
